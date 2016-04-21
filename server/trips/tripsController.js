@@ -10,6 +10,14 @@ module.exports = {
     });
   },
 
+  //search for and return all trips with a particular users email in members
+  getAllUserTrips: function(email, next) {
+    Trip.find({ 'members.email': email })
+      .exec(function(err, trips) {
+        next(err, trips);
+      });
+  },
+
   // create a trip
   createTrip: function (req, next) {
     // Add current user to trip members
