@@ -30,6 +30,7 @@ module.exports = function (app) {
   /* Trip Routes */
   app.route('/api/trip/', checkUser)
     .get(checkUser, function (req, res) {
+      console.log(req.session);
       tripsController.getTrip(req.session.user.trip, function (err, data) {
         sendResponse(res, err, data, 200);
       });
