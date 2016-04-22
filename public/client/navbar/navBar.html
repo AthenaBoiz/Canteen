@@ -6,5 +6,9 @@
     <ul class="nav navbar-nav">
     </ul>
       <a ng-click="logOut()" class="logout pointer pull-right" ng-hide="location === '/landing-page'">Logout</a>
+      <span class="logout pointer pull-right">|</span>
+      <a ng-href="#/trips" class="logout pointer pull-right" ng-hide="location === '/landing-page'">All Trips</a>
+      <span class="logout pointer pull-right">|</span>
+      <a ng-href="#/trip-form" class="logout pointer pull-right" ng-hide="location === '/landing-page'">Create Trip</a>
   </div>
 </nav>

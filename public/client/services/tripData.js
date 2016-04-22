@@ -4,13 +4,13 @@ angular.module('canteen.tripData', [])
   '$http',
   '$location',
   function ($http, $location) {
-    function getTrip() {
+    function getTrip(tripId) {
       return $http({
         method: 'GET',
-        url: '/api/trip',
+        url: '/api/trip/' + tripId,
       })
       .then(function (resp) {
-        if(!resp.data._id){
+        if ( !resp.data._id ) {
           $location.path('/#/landing-page');
           window.location.reload(true);
         }

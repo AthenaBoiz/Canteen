@@ -27,20 +27,23 @@ var checkUser = function (req, res, next) {
 
 module.exports = function (app) {
 
-  app.route('api/trips/', checkUser)
+/* All User's Trips */
+  app.route('/api/trips/', checkUser)
     .get(checkUser, function(req, res) {
       tripsController.getAllUserTrips(req.session.user.email, function(err, data) {
         sendResponse(res, err, data, 200);
       });
     });
 
-  /* Trip Routes */
-  app.route('/api/trip/', checkUser)
+  /* Single Trip Routes */
+  app.route('/api/trip/:tripId', checkUser)
     .get(checkUser, function (req, res) {
-      tripsController.getTrip(req.session.user.trip, function (err, data) {
+      tripsController.getTrip(req.params.tripId, function (err, data) {
         sendResponse(res, err, data, 200);
       });
-    })
+    });
+
+  app.route('/api/trip', checkUser)
     .post(checkUser, function (req, res) {
       tripsController.createTrip(req, function (err, data) {
         req.session.user.trip = data._id;
@@ -97,12 +100,12 @@ module.exports = function (app) {
                 // set trip on both user, and on current session user object
                 userController.addTrip(user.id, trip._id, function () {
                   req.session.user.trip = trip._id;
-                  res.redirect('/#/trip');
+                  res.redirect('/#/trips');
                 });
               }
             });
           } else {
-            res.redirect('/#/trip');
+            res.redirect('/#/trips');
           }
         });
       });

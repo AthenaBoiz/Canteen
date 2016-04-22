@@ -4,8 +4,9 @@ angular.module('canteen.trip', [])
   '$scope',
   'trip',
   'NgMap',
-  function ($scope, trip, NgMap) {
-    trip.getTrip()
+  '$stateParams',
+  function ($scope, trip, NgMap, $stateParams) {
+    trip.getTrip($stateParams.tripId)
     .then(function (tripData) {
       $scope.trip = tripData;
       $scope.dates = {

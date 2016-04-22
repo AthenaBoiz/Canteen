@@ -29,7 +29,7 @@ angular.module('canteen', [
       controller: 'tripForm'
     })
     .state('tripView', {
-      url: '/trip',
+      url: '/trip/:tripId',
       templateUrl: 'client/trip/tripView.html',
       controller: 'tripCtrl',
     })
