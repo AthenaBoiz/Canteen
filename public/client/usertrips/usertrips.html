@@ -1,11 +1,11 @@
 <div>
-  <div ng-repeat="trip in data.trips | orderBy: 'date??'">
+  <div ng-repeat="trip in data.trips | orderBy: 'start'">
     <a ng-href="#/trip/{{ trip.id }}">
       <div>
-        <h4><b>{{ trip.tripName }}</b> <span>in</span> {{ trip.location }}</h4>
-        <h5>{{ trip.date }}</h5>
+        <h4><b>{{ trip.name }}</b> <span>in</span> {{ trip.location }}</h4>
+        <h5>{{ trip.start }}<span> until </span> {{ trip.end }}</h5>
         <h5>Click to checkout this trip</h5>
       </div>
-    </a> 
+    </a>
   </div>
 </div>

@@ -27,10 +27,16 @@ var checkUser = function (req, res, next) {
 
 module.exports = function (app) {
 
+  app.route('api/trips/', checkUser)
+    .get(checkUser, function(req, res) {
+      tripsController.getAllUserTrips(req.session.user.email, function(err, data) {
+        sendResponse(res, err, data, 200);
+      });
+    });
+
   /* Trip Routes */
   app.route('/api/trip/', checkUser)
     .get(checkUser, function (req, res) {
-      console.log(req.session);
       tripsController.getTrip(req.session.user.trip, function (err, data) {
         sendResponse(res, err, data, 200);
       });
