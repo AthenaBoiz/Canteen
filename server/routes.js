@@ -37,7 +37,7 @@ module.exports = function (app) {
 
   /* Single Trip Routes */
   app.route('/api/trip/:tripId', checkUser)
-    .get(checkUser, function (req, res) {
+    .get(function (req, res) {
       tripsController.getTrip(req.params.tripId, function (err, data) {
         sendResponse(res, err, data, 200);
       });
@@ -90,28 +90,18 @@ module.exports = function (app) {
         userController.createUser(body, function (err, user) {
           // set session user to returned record
           req.session.user = user;
-          if (!user.trip) {
-            // search all trips for user email in members
-            tripsController.searchTripsForUser(user.email, function (err, trip) {
-              if (trip === null) {
-                // if no trip is found with member redirect to trip creation form
-                res.redirect('/#/trip-form');
-              } else {
-                // set trip on both user, and on current session user object
-                userController.addTrip(user.id, trip._id, function () {
-                  req.session.user.trip = trip._id;
-                  res.redirect('/#/trips');
-                });
-              }
-            });
-          } else {
-            res.redirect('/#/trips');
-          }
+          tripsController.searchTripsForUser(user.email, function (err, trip) {
+            if (trip === null) {
+              res.redirect('/#/trip-form');
+            } else {
+              res.redirect('/#/trips');
+            }
+          });
         });
       });
     });
     /* Logout Route */
-    app.route('/logout')
+  app.route('/logout')
     .get(function (req, res) {
       req.session.destroy(function (err) {
         if (err) {
