@@ -26,14 +26,9 @@ angular.module('canteen.navBar', [])
       authFactory.endSession()
         .then(function(data) {
           $location.path('/#/landing-page');
-<<<<<<< HEAD
           $scope.userId = null;
           $scope.loggedIn = false;
         });
-=======
-        });
-      window.location.reload(true);
->>>>>>> refactor auth routes and page flow
     };
   },
 ]);
