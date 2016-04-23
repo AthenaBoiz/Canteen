@@ -1,8 +1,10 @@
-body {
-  padding-top: 50px;
-  margin-bottom: 50px;
-}
 
+.input-group .form-control {
+  position: static;
+}
+.input-group-btn > .btn {
+  position: static;
+}
 p, h1, h2, h3, h4, div, a {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
@@ -10,7 +12,14 @@ p, h1, h2, h3, h4, div, a {
 
 @media (max-width: 979px) {
   body {
-    padding-top: 0px;
+    padding-top: 70px;
+    padding-bottom: 50px;
+  }
+  .input-group .form-control {
+    position: static;
+  }
+  .input-group .form-control {
+    position: static;
   }
 }
 
@@ -164,4 +173,10 @@ Trip Overview
 
 .table-head tr th:last-of-type {
   border-top-right-radius: 3px;
+}
+
+body {
+  padding-top: 50px;
+  margin-bottom: 50px;
+  padding-bottom: 50px;
 }
