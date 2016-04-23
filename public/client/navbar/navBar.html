@@ -1,14 +1,26 @@
 <nav class="navbar navbar-default navbar-fixed-top" ng-controller="navBar">
-  <div class="container">
+  <div class="container-fluid">
     <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
       <a class="navbar-brand" style="color: #FFF" ng-href="#/trips"><strong>Canteen</strong></a>
     </div>
-    <ul class="nav navbar-nav">
-    </ul>
-      <a ng-click="logOut()" class="logout pointer pull-right" ng-hide="location === '/landing-page'">Logout</a>
-      <span class="logout pointer pull-right">|</span>
-      <a ng-href="#/user/{{ insertUserIdHere }}" class="logout pointer pull-right" ng-hide="location === '/landing-page'">All Trips</a>
-      <span class="logout pointer pull-right">|</span>
-      <a ng-href="#/trip-form" class="logout pointer pull-right" ng-hide="location === '/landing-page'">Create Trip</a>
+    <div class="navbar-collapse collapse" id="navbar" aria-expanded="false" style="height: 1px;">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="navbutton">
+          <a style="color: #FFF" data-toggle="collapse" data-target="#navbar" ng-href="#/trip-form" ng-hide="location === '/landing-page'">Create Trip</a>
+        </li>
+        <li class="navbutton">
+          <a style="color: #FFF" data-toggle="collapse" data-target="#navbar" ng-href="#/user/{{ insertUserIdHere }}" ng-hide="location === '/landing-page'">All Trips</a>
+        </li>
+        <li class="navbutton">
+          <a style="color: #FFF" data-toggle="collapse" data-target="#navbar" ng-click="logOut()" class="pointer" ng-hide="location === '/landing-page'">Logout</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
