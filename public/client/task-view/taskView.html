@@ -10,15 +10,11 @@
   </thead>
 
   <tbody>
-    <tr ng-repeat="task in trip.tasks">
-      <td class="col-sm-2"> {{ task.taskName }} </td>
-      <td class="col-sm-3"> {{ task.description }} </td>
-      <td class="col-sm-1"> {{ task.category }} </td>
-      <td class="col-sm-1">
-        <svg height="12" width="10">
-          <circle cx="5" cy="6" r="5" fill="{{ color[task.assignedTo.email] }}" />
-        </svg>
-      </td>
+    <tr ng-repeat="task in taskList">
+      <td editable-text="task.taskName" class="col-sm-2"> {{ task.taskName }} </td>
+      <td editable-text="task.description" class="col-sm-3"> {{ task.description }} </td>
+      <td editable-text="task.category" class="col-sm-1"> {{ task.category }} </td>
+      <td editable-text="task.assignedTo" class="col-sm-1"> {{ task.AssignedTo }} </td>
       <td ng-click="updateStatus(task)" class="col-sm-1 glyphicon glyphicon glyphicon-grain pointer" title="Update Status" ng-if="task.statusCode === 0"></td>
       <td ng-click="updateStatus(task)" class="col-sm-1 glyphicon glyphicon-tree-conifer pointer" title="Update Status" ng-if="task.statusCode === 1"></td>
     </tr>

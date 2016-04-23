@@ -1,4 +1,5 @@
 var tripsController = require('./trips/tripsController');
+var taskController = require('./tasks/taskController.js');
 var userController = require('./users/userController');
 var messagesController = require('./messages/messagesController');
 var Purest = require('purest');
@@ -7,7 +8,7 @@ var google = new Purest({ provider: 'google' });
 
 /* Utilities */
 // handle errors and send response
-var sendResponse = function (res, err, data, status) {
+var sendResponse = function(res, err, data, status) {
   if (err) {
     res.status(400).send('Error: Record doesn\'t exist');
   } else {
@@ -16,16 +17,17 @@ var sendResponse = function (res, err, data, status) {
 };
 
 // check current session
-var checkUser = function (req, res, next) {
+var checkUser = function(req, res, next) {
+  console.log(req.session.user)
   if (req.session.user) {
     next();
   } else {
     console.log("no user");
-    res.send({_id: false});
+    res.send({ _id: false });
   }
 };
 
-module.exports = function (app) {
+module.exports = function(app) {
 
   /* All User's Info */
   app.route('/api/user/:userId', checkUser)
@@ -33,14 +35,14 @@ module.exports = function (app) {
       userController.getUser(req.params.userId, function(err, user) {
         if (!user) {
           sendResponse(res, err, {
-            user : req.session.user,
-            trips : false
+            user: req.session.user,
+            trips: false
           }, 200);
         } else {
           tripsController.getAllUserTrips(user.email, function(err, trips) {
             sendResponse(res, err, {
-              user : user,
-              trips : trips
+              user: user,
+              trips: trips
             }, 200);
           });
         }
@@ -64,44 +66,66 @@ module.exports = function (app) {
 
   /* Single Trip Routes */
   app.route('/api/trip/:tripId', checkUser)
-    .get(function (req, res) {
-      tripsController.getTrip(req.params.tripId, function (err, data) {
+    .get(function(req, res) {
+      tripsController.getTrip(req.params.tripId, function(err, data) {
         sendResponse(res, err, data, 200);
       });
     });
 
   app.route('/api/trip', checkUser)
-    .post(checkUser, function (req, res) {
-      tripsController.createTrip(req, function (err, data) {
+    .post(checkUser, function(req, res) {
+      tripsController.createTrip(req, function(err, data) {
         req.session.user.trip = data._id;
-        userController.addTrip(req.session.user.id, data._id, function (err, result) {
+        userController.addTrip(req.session.user.id, data._id, function(err, result) {
           sendResponse(res, err, data, 201);
         });
       });
     })
-    .put(checkUser, function (req, res) {
-      tripsController.updateTrip(req, function (err, data) {
+    .put(checkUser, function(req, res) {
+      tripsController.updateTrip(req, function(err, data) {
         sendResponse(res, err, data, 200);
       });
     });
 
   /* Task Routes */
+  // app.route('/api/tasks/add/:tripId')
+  //   .post(checkUser, function(req, res) {
+  //     tripsController.addTask(req, function(err, data) {
+  //       sendResponse(res, err, data, 201);
+  //     });
+  //   });
+  app.route('/api/tasks/getAll:tripId', checkUser)
+    .get(function(req, res) {
+      taskController.getAllTasks(req, function(err, data) {
+        console.log(data)
+        sendResponse(res, err, data, 200);
+      });
+    });
+
+  app.route('/api/tasks/update:tripId')
+    .put(checkUser, function(req, res) {
+      taskController.updateTask(req, function(err, data) {
+        sendResponse(res, err, data, 200);
+      });
+    });
+
   app.route('/api/tasks/add/:tripId')
-    .post(checkUser, function (req, res) {
-      tripsController.addTask(req, function (err, data) {
-        sendResponse(res, err, data, 201);
+    .post(function(req, res) {
+      console.log("route", req.body)
+      taskController.addTask(req, function(err, data) {
+        sendResponse(res, err, data, 200);
       });
     });
 
   /* Message Routes */
   app.route('/api/messages/:tripId')
-    .get(checkUser, function (req, res) {
-      messagesController.getMessages(req, function (err, data) {
+    .get(checkUser, function(req, res) {
+      messagesController.getMessages(req, function(err, data) {
         sendResponse(res, err, data, 200);
       });
     })
-    .post(checkUser, function (req, res) {
-      messagesController.addMessage(req, function (err, data) {
+    .post(checkUser, function(req, res) {
+      messagesController.addMessage(req, function(err, data) {
         sendResponse(res, err, data, 201);
       });
     });
@@ -109,22 +133,22 @@ module.exports = function (app) {
   /* OAuth Route */
   // parses out query data from google using Purest (see above)
   app.route('/callback')
-    .get(function (req, res) {
+    .get(function(req, res) {
       google.get('https://www.googleapis.com/oauth2/v2/userinfo?alt=json', {
         auth: { bearer: req.session.grant.response.access_token },
-      }, function (err, nope, body) {
+      }, function(err, nope, body) {
         //find or creates the user
-        userController.createUser(body, function (err, user) {
+        userController.createUser(body, function(err, user) {
           // set session user to returned record
           req.session.user = user;
           res.redirect('/#/user/' + user.id);
         });
       });
     });
-    /* Logout Route */
+  /* Logout Route */
   app.route('/logout')
-    .get(function (req, res) {
-      req.session.destroy(function (err) {
+    .get(function(req, res) {
+      req.session.destroy(function(err) {
         sendResponse(res, err, {}, 200);
       });
     });

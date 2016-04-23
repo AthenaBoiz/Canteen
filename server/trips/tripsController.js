@@ -45,19 +45,19 @@ module.exports = {
   },
 
   // add a task to tasks array on trip
-  addTask: function (req, next) {
-    Trip.findByIdAndUpdate(req.params.tripId, {
-      $push: {
-        tasks: req.body,
-      },
-    },
-    {
-      safe: true,
-      upsert: true,
-    })
-    .exec(function (err, trip) {
-      next(err, trip);
-    });
-  },
+  // addTask: function (req, next) {
+  //   Trip.findByIdAndUpdate(req.params.tripId, {
+  //     $push: {
+  //       tasks: req.body,
+  //     },
+  //   },
+  //   {
+  //     safe: true,
+  //     upsert: true,
+  //   })
+  //   .exec(function (err, trip) {
+  //     next(err, trip);
+  //   });
+  // },
 
 };

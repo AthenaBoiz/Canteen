@@ -18,7 +18,8 @@ angular.module('canteen', [
   'btford.socket-io',
   'ngMap',
   'ui.bootstrap',
-  'ui.router'
+  'ui.router',
+  'xeditable'
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
