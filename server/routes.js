@@ -112,7 +112,11 @@ module.exports = function (app) {
         userController.createUser(body, function (err, user) {
           // set session user to returned record
           req.session.user = user;
+<<<<<<< HEAD
           res.redirect('/#/user/' + user.id);
+=======
+          res.redirect('/#/user/' + user._id);
+>>>>>>> remove conflict
         });
       });
     });
