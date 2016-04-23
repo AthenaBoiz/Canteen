@@ -9,7 +9,7 @@ var userSchema = mongoose.Schema({
   given_name: String,
   family_name: String,
   trip: String,
-  bio: { type: String, default: 'I am a person.' },
+  bio: { type: String, default: 'I am just a simple man. Not a simpleton. I wasn\'t referring to my brain capacity. I meant more like that I don\'t have expensive tastes. That sort of thing.' },
   favorite_trips: { type: String, default: 'Disney World' }
 });
 

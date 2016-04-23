@@ -34,11 +34,16 @@ angular.module('canteen.user', [])
     };
 
     $scope.updateProfile = function() {
+      $scope.toggleProfileUpdate();
       var profile = {
-        favorite_trips : $scope.user.favorite_trips,
-        bio : $scope.user.bio
+        favorite_trips: $scope.user.favorite_trips,
+        bio: $scope.user.bio
       };
-      
+      userTrips.updateUser(profile, $scope.user.id)
+        .then(function(data) {
+          $scope.user.bio = data.bio;
+          $scope.user.favorite_trips = data.favorite_trips;
+        });
     };
 
   }

@@ -4,16 +4,30 @@ angular.module('canteen.userTrips', [])
   '$http',
   function($http) {
 
-    // might want to use user email as a parameter to return 
+    // might want to use user email as a parameter to return
     // only those trips that this user is a part of (invited to)
     var getUserInfo = function(userId) {
       return $http({
         method: 'GET',
-        url: '/api/user/' +  userId
+        url: '/api/user/' + userId
       })
       .then(function(res) {
         console.log(res.data);
         return res.data;
+      })
+      .catch(function(err) {
+        console.error(err);
+      });
+    };
+
+    var updateUser = function(data, userId) {
+      return $http({
+        method: 'PUT',
+        url: '/api/user/' + userId,
+        data: data
+      })
+      .then(function(res) {
+        return res.config.data;
       })
       .catch(function(err) {
         console.error(err);
@@ -40,7 +54,8 @@ angular.module('canteen.userTrips', [])
 
     return {
       getUserInfo: getUserInfo,
-      poulateTrips: poulateTrips
+      poulateTrips: poulateTrips,
+      updateUser: updateUser
     };
   }
 ]);

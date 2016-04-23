@@ -29,11 +29,11 @@
           <div ng-if="updateAble">
             <form id="userUpdateForm" ng-submit="updateProfile()" novalidate>
               <label for="favorite-trips">My favorite destinations:</label>
-              <input class="form-control" id="favorite-trips" type="text" ng-model="user.favorite_trips" required></input>
+              <input class="form-control" id="favorite-trips" type="text" ng-model="user.favorite_trips" ng-model-options="{ updateOn: 'submit' }" required></input>
 
               <label for="user-bio">About me:</label>
-              <input class="form-control" id="user-bio" type="text" ng-model="user.bio" required></input>
-              
+              <input class="form-control" id="user-bio" type="text" ng-model="user.bio" ng-model-options="{ updateOn: 'submit' }" required></input>
+
               <br>
 
               <button class="buttons btn" type="submit" ng-disabled="userUpdateForm.$invalid">Submit</button>

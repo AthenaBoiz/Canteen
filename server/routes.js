@@ -45,6 +45,11 @@ module.exports = function (app) {
           });
         }
       });
+    })
+    .put(checkUser, function(req, res) {
+      userController.updateUser(req.params.userId, req.body, function(err, data) {
+        sendResponse(res, err, data, 201);
+      });
     });
 
   /* Set User */
