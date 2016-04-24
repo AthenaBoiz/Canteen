@@ -4,10 +4,10 @@ var userController = require('./users/userController');
 var messagesController = require('./messages/messagesController');
 var Purest = require('purest');
 var aws = require('aws-sdk');
-var config = require('./.config/.secrets.json');
-var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY || config['aws']['AWS_ACCESS_KEY'];
-var AWS_SECRET_ACCESS = process.env.AWS_SECRET_ACCESS || config['aws']['AWS_SECRET_ACCESS'];
-var S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || config['aws']['S3_BUCKET_NAME'];
+// var config = require('./.config/.secrets.json');
+var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY || require('./.config/.secrets.json')['aws']['AWS_ACCESS_KEY'];
+var AWS_SECRET_ACCESS = process.env.AWS_SECRET_ACCESS || require('./.config/.secrets.json')['aws']['AWS_SECRET_ACCESS'];
+var S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || require('./.config/.secrets.json')['aws']['S3_BUCKET_NAME'];
 
 var google = new Purest({ provider: 'google' });
 
