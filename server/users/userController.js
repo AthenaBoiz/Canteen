@@ -24,6 +24,13 @@ module.exports = {
     });
   },
 
+  findByEmail: function(email, next) {
+    User.findOne({ email: email })
+      .exec(function(err, user) {
+        next(err, user);
+      });
+  },
+
   //update users bio Info
   updateUser: function (userId, data, next) {
     User.update( { id: userId }, {

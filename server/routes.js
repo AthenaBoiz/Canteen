@@ -34,6 +34,13 @@ var checkUser = function(req, res, next) {
 
 module.exports = function(app) {
 
+  app.route('/api/email/user:email')
+    .get(function(req, res) {
+      userController.findByEmail(req.params.email, function(err, user) {
+        sendResponse(res, err, user, 200);
+      });
+    });
+
   /* All User's Info */
   app.route('/api/user/:userId', checkUser)
     .get(checkUser, function(req, res) {

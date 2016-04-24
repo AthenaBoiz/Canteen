@@ -20,11 +20,14 @@
           <p><strong>Invited:</strong>
             <br>
             <span style="padding-right: 10px" ng-repeat="person in trip.members">
-              {{ person.email }}
+              <a ng-click="checkForUser(person.email)">
+                {{ person.email }}
+              </a>
               <svg height="10" width="10">
                 <circle cx="5" cy="5" r="5" fill="{{ color[person.email] = color.colors[$index] }}" />
               </svg>
             </span>
+            <span ng-show="notUser" class="ng-hide">Not a User!</span>
           </p>
           <p><strong>Dates:</strong>
             <br>
