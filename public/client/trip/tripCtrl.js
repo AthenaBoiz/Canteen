@@ -21,7 +21,7 @@ angular.module('canteen.trip', [])
             setTimeout(function() {
               $scope.notUser = false;
               $scope.$apply();
-            }, 2000)
+            }, 2200)
           }
         });
     };
