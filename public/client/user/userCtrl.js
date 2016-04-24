@@ -21,7 +21,6 @@ angular.module('canteen.user', [])
 
     $scope.trips = [];
     $scope.noTrips = true;
-    console.log($stateParams.userId);
     userTrips.getUserInfo($stateParams.userId)
     .then(function(userData) {
       $scope.user = userData.user;
