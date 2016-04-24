@@ -15,8 +15,7 @@ angular.module('canteen.trip', [])
       trip.checkForUser(email)
         .then(function(user) {
           if (user.data) {
-            console.log(user.data.id);
-            $state.go('user', { userId: user.data.id });
+            $state.go('userView', { userId: user.data.id });
           } else {
             $scope.notUser = true;
             setTimeout(function() {
