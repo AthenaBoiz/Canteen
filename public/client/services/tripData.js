@@ -137,6 +137,19 @@ angular.module('canteen.tripData', [])
         console.error(err);
       });
     }
+    function checkForUser(email) {
+      return $http({
+        method: 'GET',
+        url: '/api/email/user' + email
+      })
+      .then(function(res) {
+        // console.log(res);
+        return res;
+      })
+      .catch(function(err) {
+        console.error(err);
+      });
+    }
 
     // Factory methods use promises
     return {
