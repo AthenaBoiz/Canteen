@@ -44,7 +44,6 @@ module.exports = function(app) {
   /* All User's Info */
   app.route('/api/user/:userId', checkUser)
     .get(checkUser, function(req, res) {
-      console.log(req.session.user, '---', req.params.userId);
       userController.getUser(req.params.userId, function(err, user) {
         if (!user) {
           sendResponse(res, err, {
