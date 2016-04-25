@@ -13,13 +13,17 @@ angular.module('canteen.tripForm', [])
     $scope.userId = null;
     $scope.loggedIn = false;
 
-    authFactory.setUser()
-      .then(function(user) {
-        if (user.userId) {
-          $scope.userId = user.userId;
-          $scope.loggedIn = true;
-        }
-      });
+    if ( authFactory.userObj.userId ) {
+      console.log('hey');
+    }
+
+    // authFactory.setUser()
+    //   .then(function(user) {
+    //     if (user.userId) {
+    //       $scope.userId = user.userId;
+    //       $scope.loggedIn = true;
+    //     }
+    //   });
 
     $scope.addMember = function () {
       // Add trip member to array and reset field

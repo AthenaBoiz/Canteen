@@ -71,8 +71,13 @@ module.exports = function(app) {
       var userObj = {};
       if (req.session.user) {
         userObj.userId = req.session.user.id;
+        userController.getUser(req.session.user.id, function(err, user) {
+          if (user) {
+            userObj.user = user;
+          }
+          res.send(200, userObj);
+        });
       }
-      res.send(200, userObj);
     });
 
   /* Single Trip Routes */
