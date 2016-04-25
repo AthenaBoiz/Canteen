@@ -1,4 +1,4 @@
-<table class="table table-hover" ng-if="taskList.length">
+<table class="table table-hover" ng-if="taskList.length && invitedUser">
   <thead class="table-head">
     <tr>
       <th class="col-sm-2">Task</th>
@@ -16,8 +16,26 @@
       <td editable-text="task.category" onbeforesave="updateTask(task)" class="col-sm-1"> {{ task.category }} </td>
       <td editable-text="task.assignedTo" onbeforesave="updateTask(task)" class="col-sm-1"> {{ task.assignedTo }} </td>
       <td class="col-sm-1"><button class="btn btn-danger" ng-click="removeTask(task, $index)">del</button></td>
-<!--       <td ng-click="updateStatus(task)" onbeforesave="updateTask(task)" class="col-sm-1 glyphicon glyphicon glyphicon-grain pointer" title="Update Status" ng-if="task.statusCode === 0"></td>
-      <td ng-click="updateStatus(task)" onbeforesave="updateTask(task)" class="col-sm-1 glyphicon glyphicon-tree-conifer pointer" title="Update Status" ng-if="task.statusCode === 1"></td> -->
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-hover" ng-if="taskList.length && !invitedUser">
+  <thead class="table-head">
+    <tr>
+      <th class="col-sm-2">Task</th>
+      <th class="col-sm-3">Description</th>
+      <th class="col-sm-1">Category</th>
+      <th class="col-sm-1">Assigned</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr ng-repeat="task in taskList">
+      <td class="col-sm-2"> {{ task.taskName }} </td>
+      <td class="col-sm-3"> {{ task.description }} </td>
+      <td class="col-sm-1"> {{ task.category }} </td>
+      <td class="col-sm-1"> {{ task.assignedTo }} </td>
     </tr>
   </tbody>
 </table>

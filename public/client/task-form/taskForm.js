@@ -19,6 +19,7 @@ angular.module('canteen.taskForm', [])
             taskHolder.refreshTasks();
           }
         });
+
       $scope.taskForm = {
         statusCode: 0
       };

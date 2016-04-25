@@ -5,11 +5,13 @@ angular.module('canteen.user', [])
   '$stateParams',
   'userTrips',
   'awsService',
-  function ($scope, $stateParams, userTrips, awsService) {
+  'authFactory',
+  function ($scope, $stateParams, userTrips, awsService, authFactory) {
     // console.log($stateParams.userId);
     var imgTypes = ['image/jpeg', 'image/png'];
     $scope.user = {};
 
+    $scope.userOwnsProfile = false;
     // $scope.user.given_name = 'John';
     // $scope.user.family_name = 'Doe';
     // $scope.user.email = 'johndoe@gmail.com';
@@ -21,10 +23,19 @@ angular.module('canteen.user', [])
 
     $scope.trips = [];
     $scope.noTrips = true;
+
+    authFactory.setUser()
+      .then(function(user) {
+        if (user.userId) {
+          if (user.userId === $stateParams.userId) {
+            $scope.userOwnsProfile = true;
+          }
+        }
+      });
+
     userTrips.getUserInfo($stateParams.userId)
     .then(function(userData) {
       $scope.user = userData.user;
-
       if (Array.isArray(userData.trips) && userData.trips.length) {
         $scope.trips = userTrips.poulateTrips(userData.trips);
         $scope.noTrips = false;

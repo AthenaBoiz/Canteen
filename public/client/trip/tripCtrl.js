@@ -1,4 +1,4 @@
-angular.module('canteen.trip', ['xeditable', 'ui.bootstrap'])
+angular.module('canteen.trip', ['xeditable'])
 
 .controller('tripCtrl', [
   '$scope',
@@ -7,9 +7,24 @@ angular.module('canteen.trip', ['xeditable', 'ui.bootstrap'])
   '$stateParams',
   '$location',
   '$state',
-  function ($scope, trip, NgMap, $stateParams, $location, $state) {
+  'authFactory',
+  function ($scope, trip, NgMap, $stateParams, $location, $state, authFactory) {
     $scope.trip = null;
+
+    $scope.invitedUser = false;
+
     $scope.notUser = false;
+    $scope.currentUser = null;
+    $scope.loggedIn = false;
+
+    authFactory.setUser()
+      .then(function(user) {
+        if (user.userId) {
+          $scope.currentUser = user;
+          $scope.loggedIn = true;
+        }
+      });
+
     $scope.checkForUser = function(email) {
       trip.checkForUser(email)
         .then(function(user) {
@@ -24,10 +39,21 @@ angular.module('canteen.trip', ['xeditable', 'ui.bootstrap'])
           }
         });
     };
-     
+
      $scope.updateTrip = function(Trip){
         console.log(Trip)
         trip.updateTrip(Trip);
+     };
+
+     $scope.deleteTrip = function(Trip){
+      console.log(Trip._id)
+      trip.deleteTrip(Trip._id)
+      .then(function(data){
+        if(data){
+
+        }
+        $state.go('userView', { userId: $scope.currentUser.userId });
+      })
      };
 
     trip.getTrip($stateParams.tripId)
@@ -37,6 +63,17 @@ angular.module('canteen.trip', ['xeditable', 'ui.bootstrap'])
         start: moment($scope.trip.dates.start).format('MMM Do, YYYY'),
         end: moment($scope.trip.dates.end).format('MMM Do, YYYY')
       };
+      if ($scope.currentUser) {
+        var members = [];
+        tripData.members.forEach(function(member) {
+          members.push(member.email);
+        });
+
+        // console.log($scope.currentUser.email);
+        if (members.indexOf($scope.currentUser.email) !== -1) {
+          $scope.invitedUser = true;
+        }
+      }
     });
 
     $scope.color = {

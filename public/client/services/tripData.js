@@ -127,6 +127,20 @@ angular.module('canteen.tripData', [])
         })
     }
 
+    function deleteTrip(tripId) {
+      return $http({
+          method: 'DELETE',
+          url: '/api/trip/delete/' + tripId
+        })
+        .then(function(res) {
+          console.log(res)
+          return res.data;
+        })
+        .catch(function(err) {
+          console.error(err);
+        })
+    }
+
     // Factory methods use promises
     return {
       getTrip: getTrip,
@@ -137,7 +151,8 @@ angular.module('canteen.tripData', [])
       refreshTasks: refreshTasks,
       updateTask: updateTask,
       deleteTask: deleteTask,
-      updateTrip: updateTrip
+      updateTrip: updateTrip,
+      deleteTrip: deleteTrip
     };
   },
 ]);

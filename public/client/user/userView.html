@@ -33,7 +33,7 @@
                 {{ user.bio }}
               </div>
             </div>
-            <button class="buttons btn" ng-click="toggleProfileUpdate()">Update Profile</button>
+            <button class="buttons btn" ng-click="toggleProfileUpdate()" ng-if="userOwnsProfile">Update Profile</button>
           </div>
 
           <div ng-if="updateAble">
@@ -61,7 +61,6 @@
               <button class="buttons btn" ng-click="toggleProfileUpdate()">Cancel</button>
             </form>
           </div>
-
         </div>
 
         <!-- Right column: User Trips Info -->

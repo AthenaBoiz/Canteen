@@ -9,14 +9,14 @@ angular.module('canteen.navBar', [])
 
     // get the userId on the scope so it can be used in the navbar link
     // also set a logged in/logged out state here
-    $scope.userId = null;
+    $scope.currentUser = null;
     $scope.loggedIn = false;
 
     authFactory.setUser()
       .then(function(user) {
         console.log(user);
         if (user.userId) {
-          $scope.userId = user.userId;
+          $scope.currentUser = user;
           $scope.loggedIn = true;
         }
       });

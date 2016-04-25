@@ -2,13 +2,13 @@
   <div class="table-margin">
     <div class="panel panel-default">
 
-      <div class="panel-heading">
+      <!-- Invited user view -->
+      <div class="panel-heading" ng-if="invitedUser">
         <h3 class="panel-title" editable-text="trip.tripName" onbeforesave="updateTrip(trip)"> {{ trip.tripName }} </h3>
-        <button style="float: right;" class="btn btn-danger col-sm-1" ng-click="removeTask(task, $index)">delete</button>
+        <button style="float: right;" class="btn btn-danger col-sm-1" ng-click="deleteTrip(trip)">delete</button>
       </div>
 
-      <div class="panel-body">
-
+      <div class="panel-body" ng-if="invitedUser">
         <!-- Left column -->
         <div class="col-md-6">
           <div map-lazy-load="https://maps.google.com/maps/api/js">
@@ -30,7 +30,7 @@
             </span>
             <span ng-show="notUser" class="ng-hide">Not a User!</span>
           </p>
-          <p editable-bsdate="dates.start" e-is-open="opened.$data" onbeforesave="updateTrip(trip)" e-datepicker-popup="dd-MMMM-yyyy"><strong>Dates:</strong>
+          <p editable-bsdate="dates.start"  onbeforesave="updateTrip(trip)" type="date"><strong>Dates:</strong>
             <br>
             {{ dates.start }} &nbsp;-&nbsp; {{ dates.end }}
           </p>
@@ -44,9 +44,46 @@
 
         <!-- Messages -->
         <div ng-controller="tripMessages" ng-include="'../client/trip-messages/tripMessages.html'"></div>
-
       </div> <!-- /panel-body -->
 
+      <!-- Preview view -->
+      <div class="panel-heading" ng-if="!invitedUser">
+        <h3 class="panel-title"> {{ trip.tripName }} </h3>
+      </div>
+
+      <div class="panel-body" ng-if="!invitedUser">
+        <!-- Left column -->
+        <div class="col-md-6">
+          <div map-lazy-load="https://maps.google.com/maps/api/js">
+            <ng-map center="{{ trip.location }}" zoom="10" map-type-id="MapTypeId.HYBRID">
+              <marker position="{{ trip.location }}"></marker>
+            </ng-map>
+          </div>
+
+          <p>
+            <strong>Invited:</strong>
+            <br>
+            <span style="padding-right: 10px" ng-repeat="person in trip.members">
+              <a ng-click="checkForUser(person.email)">
+                {{ person.email }}
+              </a>
+              <svg height="10" width="10">
+                <circle cx="5" cy="5" r="5" fill="{{ color[person.email] = color.colors[$index] }}" />
+              </svg>
+            </span>
+            <span ng-show="notUser" class="ng-hide">Not a User!</span>
+          </p>
+          <p>
+            <strong>Dates:</strong>
+            <br>
+            {{ dates.start }} &nbsp;-&nbsp; {{ dates.end }}
+          </p>
+        </div>
+
+        <!-- Right Table: Tasks -->
+        <div class="table-responsive col-md-6" ng-if="trip._id" ng-controller="taskView" ng-include="'../client/task-view/taskView.html'"></div>
+
+      </div> <!-- /panel-body -->
     </div>
   </div>
 </div>
