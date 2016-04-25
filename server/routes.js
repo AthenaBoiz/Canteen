@@ -174,6 +174,7 @@ module.exports = function(app) {
         userController.createUser(body, function(err, user) {
           // set session user to returned record
           req.session.user = user;
+          console.log('there   - ',req.session);
           res.redirect('/#/user/' + user.id);
         });
       });
@@ -182,6 +183,7 @@ module.exports = function(app) {
   app.route('/logout')
     .get(function(req, res) {
       req.session.destroy(function(err) {
+        console.log('here - ', req.session);
         sendResponse(res, err, {}, 200);
       });
     });
