@@ -182,6 +182,7 @@ module.exports = function(app) {
   app.route('/logout')
     .get(function(req, res) {
       req.session.destroy(function(err) {
+        console.log('here - ', req.session);
         sendResponse(res, err, {}, 200);
       });
     });
