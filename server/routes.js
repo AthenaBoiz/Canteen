@@ -23,7 +23,6 @@ var sendResponse = function(res, err, data, status) {
 
 // check current session
 var checkUser = function(req, res, next) {
-  console.log(req.session.user)
   if (req.session.user) {
     next();
   } else {
@@ -122,7 +121,6 @@ module.exports = function(app) {
 
   app.route('/api/task/update2')
     .put(function(req, res) {
-      console.log('update', req.body)
       taskController.updateTask(req, function(err, data) {
         sendResponse(res, err, data, 200);
       });
@@ -178,17 +176,41 @@ module.exports = function(app) {
       });
     });
 
+  // app.route('/sign_s3')
+  //   .get(checkUser, function(req, res) {
+  //     var file_extension = req.query.file_name.split('.')[1];
+  //     aws.config.update({ accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_ACCESS });
+  //     var s3 = new aws.S3();
+  //     var s3_params = {
+  //       Bucket: S3_BUCKET_NAME,
+  //       Key: req.session.user.id + '.' + file_extension,
+  //       Expires: 60,
+  //       ContentType: req.query.file_type,
+  //       ACL: 'public-read-write'
+  //     };
+  //     s3.getSignedUrl('putObject', s3_params, function(err, data) {
+  //       if (err) {
+  //         console.log(err);
+  //       } else {
+  //         var return_data = {
+  //           signed_request: data,
+  //           url: 'https://' + S3_BUCKET_NAME + '.s3.amazonaws.com/' + req.session.user.id + '.' + file_extension
+  //         };
+  //         sendResponse(res, err, return_data, 200);
+  //       }
+  //     });
+  //   });
+
   app.route('/sign_s3')
     .get(checkUser, function(req, res) {
-      var file_extension = req.query.file_name.split('.')[1];
       aws.config.update({ accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_ACCESS });
       var s3 = new aws.S3();
       var s3_params = {
         Bucket: S3_BUCKET_NAME,
-        Key: req.session.user.id + '.' + file_extension,
+        Key: req.query.file_name,
         Expires: 60,
         ContentType: req.query.file_type,
-        ACL: 'public-read'
+        ACL: 'public-read-write'
       };
       s3.getSignedUrl('putObject', s3_params, function(err, data) {
         if (err) {
@@ -196,7 +218,7 @@ module.exports = function(app) {
         } else {
           var return_data = {
             signed_request: data,
-            url: 'https://' + S3_BUCKET_NAME + '.s3.amazonaws.com/' + req.session.user.id + '.' + file_extension
+            url: 'https://' + S3_BUCKET_NAME + '.s3.amazonaws.com/' + req.query.file_name
           };
           sendResponse(res, err, return_data, 200);
         }

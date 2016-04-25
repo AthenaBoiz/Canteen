@@ -1,4 +1,8 @@
 
+main {
+  padding: 50px 0;
+}
+
 .input-group .form-control {
   position: static;
 }
@@ -11,10 +15,10 @@ p, h1, h2, h3, h4, div, a {
 }
 
 @media (max-width: 979px) {
-  body {
+  /*body {
     padding-top: 70px;
     padding-bottom: 50px;
-  }
+  }*/
   .input-group .form-control {
     position: static;
   }
@@ -27,11 +31,12 @@ p, h1, h2, h3, h4, div, a {
 Landing Page
 */
 .landing {
-  top: 50px;
+  /*top: 50px;*/
   bottom: 0;
   width: 100%;
-  background-image: url("../img/blackrock-mountain.jpg");
+  background-image: url("../img/bg.jpg");
   background-size: cover;
+  background-position: center center;
   text-align: center;
   background-attachment: fixed;
 }
@@ -39,39 +44,42 @@ Landing Page
 .google-signin {
   background-color: rgba(255, 255, 255, 0.6);
   padding: 10px 25px;
-  border: 2px solid	rgb(255, 128, 0);
+  border: 2px solid	rgb(0, 51, 102);
   border-radius: 0;
-  color: rgb(255, 128, 0);
+  color: rgb(0, 51, 102);
   font-size: 18px;
   font-weight: 500;
   margin-top: 15px;
+  transition: all 0.3s;
 }
 
 .buttons {
   background-color: rgba(255, 255, 255, 0.6);
   padding: 8px 15px;
-  border: 2px solid	rgb(255, 128, 0);
+  border: 2px solid	rgb(0, 51, 102);
   border-radius: 0;
-  color: rgb(255, 128, 0);
+  color: rgb(0, 51, 102);
   font-size: 14px;
   font-weight: 500;
+  transition: all 0.3s;
 }
 
 .buttons:hover {
-  background-color: rgb(44, 181, 81);
+  background-color: rgb(0, 51, 102);
   color: white;
   border: 2px solid white;
 }
 
 .google-signin:hover {
-  background-color: rgb(44, 181, 81);
+  background-color: rgb(0, 51, 102);
   color: white;
   border: 2px solid white;
 }
 
 .home {
-  background-color: rgba(255, 255, 255, 0.6);
-  color: rgb(44, 181, 81);
+  background-color: rgba(255, 255, 255, 0.7);
+  color: rgb(0, 51, 102);
+  min-height: 100vh;
 }
 
 .landing-body {
@@ -80,17 +88,19 @@ Landing Page
 }
 
 .about {
-  background-color: rgba(44, 181, 81, 0.4);
+  background-color: rgba(0, 51, 102, 0.4);
   color: white;
   padding-top: 140px;
   padding-bottom: 140px;
+  min-height: 100vh;
 }
 
 .customers {
   background-color: rgba(255, 255, 255, 0.9);
   padding-top: 140px;
   padding-bottom: 90px;
-  color: rgb(44, 181, 81);
+  color: rgb(0, 51, 102);
+  min-height: 100vh;
 }
 
 .testimonial {
@@ -110,12 +120,12 @@ Landing Page
 Navbar
 */
 .navbar {
-  background-color: rgb(44, 181, 81);
+  background-color: rgb(0, 51, 102);
   border-color: #888;
 }
 
 .footer {
-  background-color: rgb(44, 181, 81);
+  background-color: rgb(0, 51, 102);
   text-align: center;
   padding: 10px 0;
   color: white;
@@ -175,11 +185,11 @@ Trip Overview
   border-top-right-radius: 3px;
 }
 
-body {
+/*body {
   padding-top: 50px;
   margin-bottom: 50px;
   padding-bottom: 50px;
-}
+}*/
 
 
 /* PROFILE PAGE */
@@ -218,6 +228,10 @@ body {
 }
 
 .profile-pic {
+  max-width: 100%;
+  margin-top: 15px;
+}
+.profile-pic-holder {
   margin: 15px auto 0;
   width: 150px;
   height: 150px;

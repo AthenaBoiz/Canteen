@@ -20,8 +20,9 @@ angular.module('canteen.awsService', [])
     function uploadFile(file, putObj, cb) {
       var xhr = new XMLHttpRequest();
       xhr.open('PUT', putObj.signed_request);
-      xhr.setRequestHeader('x-amz-acl', 'public-read');
-      xhr.onload = function() {
+      xhr.setRequestHeader('x-amz-acl', 'public-read-write');
+      xhr.onload = function(data) {
+        console.log(data);
         if (xhr.status === 200) {
           cb(putObj.url);
         }
