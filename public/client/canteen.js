@@ -11,7 +11,6 @@ angular.module('canteen', [
   'canteen.tripForm',
   'canteen.user',
   'canteen.userTrips',
-  'canteen.userTripsCtrl',
   'canteen.tripMessages',
   'canteen.socketFactory',
   'canteen.timeHelper',
