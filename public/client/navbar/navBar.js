@@ -14,6 +14,7 @@ angular.module('canteen.navBar', [])
 
     authFactory.setUser()
       .then(function(user) {
+        console.log(user);
         if (user.userId) {
           $scope.userId = user.userId;
           $scope.loggedIn = true;
