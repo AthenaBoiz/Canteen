@@ -12,7 +12,7 @@ angular.module('canteen.trip', ['xeditable'])
     $scope.trip = null;
     $scope.notUser = false;
     $scope.currentUser = null;
-
+    $scope.loggedIn = false;
     authFactory.setUser()
       .then(function(user) {
         if (user.userId) {
