@@ -7,9 +7,20 @@ angular.module('canteen.trip', ['xeditable'])
   '$stateParams',
   '$location',
   '$state',
-  function ($scope, trip, NgMap, $stateParams, $location, $state) {
+  'authFactory',
+  function ($scope, trip, NgMap, $stateParams, $location, $state, authFactory) {
     $scope.trip = null;
     $scope.notUser = false;
+    $scope.currentUser = null;
+
+    authFactory.setUser()
+      .then(function(user) {
+        if (user.userId) {
+          $scope.currentUser = user;
+          $scope.loggedIn = true;
+        }
+      });
+
     $scope.checkForUser = function(email) {
       trip.checkForUser(email)
         .then(function(user) {
@@ -24,7 +35,7 @@ angular.module('canteen.trip', ['xeditable'])
           }
         });
     };
-     
+
      $scope.updateTrip = function(Trip){
         console.log(Trip)
         trip.updateTrip(Trip);
@@ -35,8 +46,9 @@ angular.module('canteen.trip', ['xeditable'])
       trip.deleteTrip(Trip._id)
       .then(function(data){
         if(data){
-          
+
         }
+        $state.go('userView', { userId: $scope.currentUser.userId });
       })
      };
 
