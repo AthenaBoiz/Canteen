@@ -35,26 +35,21 @@ angular.module('canteen.trip', ['xeditable'])
             setTimeout(function() {
               $scope.notUser = false;
               $scope.$apply();
-            }, 2200)
+            }, 2200);
           }
         });
     };
 
-     $scope.updateTrip = function(Trip){
-        console.log(Trip)
-        trip.updateTrip(Trip);
-     };
+    $scope.updateTrip = function(Trip) {
+      trip.updateTrip(Trip);
+    };
 
-     $scope.deleteTrip = function(Trip){
-      console.log(Trip._id)
+    $scope.deleteTrip = function(Trip) {
       trip.deleteTrip(Trip._id)
-      .then(function(data){
-        if(data){
-
-        }
-        $state.go('userView', { userId: $scope.currentUser.userId });
-      })
-     };
+        .then(function(data) {
+          $state.go('userView', { userId: $scope.currentUser.userId });
+        });
+    };
 
     trip.getTrip($stateParams.tripId)
     .then(function (tripData) {

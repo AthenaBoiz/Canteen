@@ -103,9 +103,9 @@ module.exports = function(app) {
     .delete(function(req, res) {
       tripsController.deleteTrip(req, function(err, data) {
         sendResponse(res, err, data, 204);
-      })
+      });
 
-    })
+    });
     // .put(checkUser, function(req, res) {
     //   tripsController.updateTrip(req, function(err, data) {
     //     sendResponse(res, err, data, 200);
