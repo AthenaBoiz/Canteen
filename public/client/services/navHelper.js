@@ -7,6 +7,7 @@ angular.module('canteen.navHelper', [])
     var userObj = {};
 
     function setUser () {
+<<<<<<< HEAD
       if (userObj.userId) {
         return Promise.resolve(userObj);
       } else {
@@ -22,6 +23,19 @@ angular.module('canteen.navHelper', [])
           console.error(err);
         });
       }
+=======
+      return $http({
+        method: 'GET',
+        url: '/api/setuser'
+      })
+      .then(function (resp) {
+        userObj = resp.data;
+        return resp.data;
+      })
+      .catch(function (err) {
+        console.error(err);
+      });
+>>>>>>> refactor set user
     }
 
     function endSession () {
