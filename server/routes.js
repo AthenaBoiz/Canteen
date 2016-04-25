@@ -73,7 +73,7 @@ module.exports = function(app) {
         userObj.userId = req.session.user.id;
         userController.getUser(req.session.user.id, function(err, user) {
           if (user) {
-            userObj.user = user;
+            userObj.email = user.email;
           }
           res.send(200, userObj);
         });

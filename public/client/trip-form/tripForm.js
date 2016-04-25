@@ -10,20 +10,17 @@ angular.module('canteen.tripForm', [])
     $scope.tripForm = {};
     $scope.members =  [];
     $scope.tripMember = {};
-    $scope.userId = null;
+    $scope.currentUser = null;
     $scope.loggedIn = false;
 
-    if ( authFactory.userObj.userId ) {
-      console.log('hey');
-    }
 
-    // authFactory.setUser()
-    //   .then(function(user) {
-    //     if (user.userId) {
-    //       $scope.userId = user.userId;
-    //       $scope.loggedIn = true;
-    //     }
-    //   });
+    authFactory.setUser()
+      .then(function(user) {
+        if (user.userId) {
+          $scope.currentUser = user;
+          $scope.loggedIn = true;
+        }
+      });
 
     $scope.addMember = function () {
       // Add trip member to array and reset field
@@ -36,7 +33,7 @@ angular.module('canteen.tripForm', [])
       $scope.tripForm.members = $scope.members;
       formFactory.submitTrip($scope.tripForm)
       .then(function(data) {
-        $state.go('userView', { userId: $scope.userId });
+        $state.go('userView', { userId: $scope.currentUser.userId });
       });
     };
   }
