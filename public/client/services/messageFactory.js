@@ -37,7 +37,6 @@ angular.module('canteen.messageFactory', [])
       });
     }
 
-    // Factory methods use promises
     return {
       getMessages: getMessages,
       addMessage: addMessage

@@ -5,9 +5,8 @@ angular.module('canteen.taskForm', [])
   '$scope',
   'formFactory',
   'trip',
-  'taskHolder',
-
-  function($scope, formFactory, trip, taskHolder) {
+  'socket',
+  function($scope, formFactory, trip, socket) {
     $scope.taskForm = {
       statusCode: 0
     };
@@ -16,19 +15,21 @@ angular.module('canteen.taskForm', [])
       formFactory.submitTask($scope.taskForm, $scope.trip._id)
         .then(function(data) {
           if (data) {
-            taskHolder.refreshTasks();
+            trip.getAllTasks($scope.trip._id)
+              .then(function(data) {
+                socket.emit('taskList:update', data);
+              });
           }
         });
 
       $scope.taskForm = {
         statusCode: 0
       };
-      // $scope.bullets = [];
 
       trip.getTrip($scope.trip._id)
         .then(function(trip) {
           $scope.$parent.trip = trip;
-        })
+        });
     };
   }
 ]);

@@ -18,10 +18,10 @@ module.exports = {
   },
 
   updateTask: function(req, next) {
-    var task = req.body
-    Task.findByIdAndUpdate(task._id, task)
+    var newTask = req.body;
+    Task.findByIdAndUpdate(newTask._id, newTask)
       .exec(function(err, task) {
-        next(err, task);
+        next(err, newTask);
       })
   },
 

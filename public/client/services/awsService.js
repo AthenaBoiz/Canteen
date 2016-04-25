@@ -33,7 +33,6 @@ angular.module('canteen.awsService', [])
       xhr.send(file);
     }
 
-    // Factory methods use promises
     return {
       getSignedReq: getSignedReq,
       uploadFile: uploadFile

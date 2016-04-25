@@ -38,7 +38,6 @@ angular.module('canteen.navHelper', [])
       });
     }
 
-    // Factory methods return promises
     return {
       setUser: setUser,
       endSession: endSession,
