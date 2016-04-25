@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class="table-margin">
     <div class="panel panel-default">
@@ -5,7 +6,7 @@
       <!-- Invited user view -->
       <div class="panel-heading" ng-if="invitedUser">
         <h3 class="panel-title" editable-text="trip.tripName" onbeforesave="updateTrip(trip)"> {{ trip.tripName }} </h3>
-        <button style="float: right;" class="btn btn-danger col-sm-1" ng-click="deleteTrip(trip)">delete</button>
+        <button class="btn btn-danger btn-delete-trip" ng-click="deleteTrip(trip)">delete</button>
       </div>
 
       <div class="panel-body" ng-if="invitedUser">

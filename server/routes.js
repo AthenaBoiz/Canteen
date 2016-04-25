@@ -89,7 +89,7 @@ module.exports = function(app) {
     .post(checkUser, function(req, res) {
       tripsController.createTrip(req, function(err, data) {
         req.session.user.trip = data._id;
-        userController.addTrip(req.session.user.id, data._id, function(err, result) {
+        userController.addTrip(req.session.user.id, data._id, function(err, stuff) {
           sendResponse(res, err, data, 201);
         });
       });
@@ -174,6 +174,7 @@ module.exports = function(app) {
         userController.createUser(body, function(err, user) {
           // set session user to returned record
           req.session.user = user;
+
           res.redirect('/#/user/' + user.id);
         });
       });

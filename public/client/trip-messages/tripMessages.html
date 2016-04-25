@@ -1,6 +1,6 @@
 <div class="col-sm-12">
   <!-- Add Message -->
-  <section class="col-sm-5 col-sm-push-7">
+  <section class="col-sm-5 col-sm-push-7 trip-messages-left">
     <form name="addMessageForm" ng-submit="submitMessage(addMessageForm.$valid)" novalidate>
       <div class="form-group">
         <label for="inputMessage">New Message:</label>
@@ -10,7 +10,7 @@
     </form>
   </section>
   <!-- Messages Display -->
-  <section class="col-sm-7 col-sm-pull-5">
+  <section class="col-sm-7 col-sm-pull-5 trip-messages-right">
     <div class="panel panel-default" ng-repeat="message in messages | orderBy:'-createdAt'">
       <div class="panel-heading">
         <h5 class="panel-title message-panel-title">

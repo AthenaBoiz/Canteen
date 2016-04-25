@@ -3,7 +3,6 @@ angular.module('canteen.userTrips', [])
 .factory('userTrips', [
   '$http',
   function($http) {
-
     var getUserInfo = function(userId) {
       return $http({
         method: 'GET',

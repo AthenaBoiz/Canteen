@@ -36,6 +36,7 @@ angular.module('canteen.user', [])
     userTrips.getUserInfo($stateParams.userId)
     .then(function(userData) {
       $scope.user = userData.user;
+
       if (Array.isArray(userData.trips) && userData.trips.length) {
         $scope.trips = userTrips.poulateTrips(userData.trips);
         $scope.noTrips = false;

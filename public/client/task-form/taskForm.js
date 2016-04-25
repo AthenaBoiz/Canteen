@@ -30,6 +30,5 @@ angular.module('canteen.taskForm', [])
           $scope.$parent.trip = trip;
         })
     };
-
-  },
+  }
 ]);

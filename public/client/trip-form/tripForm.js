@@ -32,9 +32,9 @@ angular.module('canteen.tripForm', [])
       // Add members to form, submit form, and redirect to tripView
       $scope.tripForm.members = $scope.members;
       formFactory.submitTrip($scope.tripForm)
-      .then(function(data) {
-        $state.go('userView', { userId: $scope.currentUser.userId });
-      });
+        .then(function(trip) {
+          $state.go('tripView', { tripId: trip.data._id });
+        });
     };
   }
 ]);
