@@ -43,7 +43,6 @@ module.exports = function(app) {
   /* All User's Info */
   app.route('/api/user/:userId', checkUser)
     .get(checkUser, function(req, res) {
-      console.log(req.session.user, '---', req.params.userId);
       userController.getUser(req.params.userId, function(err, user) {
         if (!user) {
           sendResponse(res, err, {
@@ -183,7 +182,6 @@ module.exports = function(app) {
   app.route('/logout')
     .get(function(req, res) {
       req.session.destroy(function(err) {
-        console.log('here - ', req.session);
         sendResponse(res, err, {}, 200);
       });
     });
