@@ -10,7 +10,6 @@ angular.module('canteen.userTrips', [])
         url: '/api/user/' + userId
       })
       .then(function(res) {
-        console.log(res.data);
         return res.data;
       })
       .catch(function(err) {

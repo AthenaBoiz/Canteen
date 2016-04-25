@@ -50,19 +50,13 @@ module.exports = {
   // delete a trip and all tasks by ID
   deleteTrip: function(req, next) {
     var tripId = req.params.tripId;
-    Trip.findByIdAndRemove(tripId, function(err, trip){
-       if (err) {
-          next(err)
-        } else {
-          // Task.findAll({tripId: tripId})
-          //   .remove()
+    Trip.findByIdAndRemove(tripId)
+      .exec(function(err, trip) {
+        next(err, trip);
+      });
+  }
 
-          // have to delete all tasks
-          next("deleted");
 
-        }
-    })
-      
 
 
       // .exec(function(err, trip) {
@@ -79,7 +73,6 @@ module.exports = {
 
       // })
 
-  }
 
   // add a task to tasks array on trip
   // addTask: function (req, next) {
