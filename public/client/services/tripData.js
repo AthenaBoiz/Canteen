@@ -85,7 +85,6 @@ angular.module('canteen.tripData', [])
     }
 
     function updateTask(task) {
-      console.log(task)
       return $http({
           method: 'PUT',
           url: '/api/task/update2',
@@ -113,6 +112,21 @@ angular.module('canteen.tripData', [])
         })
     }
 
+    function updateTrip(trip) {
+      return $http({
+          method: 'PUT',
+          url: '/api/trip/update',
+          data: trip
+        })
+        .then(function(res) {
+          console.log(res.data)
+          return res.data;
+        })
+        .catch(function(err) {
+          console.error(err);
+        })
+    }
+
     // Factory methods use promises
     return {
       getTrip: getTrip,
@@ -122,7 +136,8 @@ angular.module('canteen.tripData', [])
       checkForUser: checkForUser,
       refreshTasks: refreshTasks,
       updateTask: updateTask,
-      deleteTask: deleteTask
+      deleteTask: deleteTask,
+      updateTrip: updateTrip
     };
   },
 ]);

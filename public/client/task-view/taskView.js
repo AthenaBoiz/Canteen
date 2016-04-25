@@ -25,8 +25,6 @@ angular.module('canteen.taskView', ['xeditable'])
     };
 
     $scope.removeTask = function(task, index) {
-      console.log(task._id)
-
       trip.deleteTask(task._id)
         .then(function(data) {
           if (data) {

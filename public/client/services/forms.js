@@ -18,10 +18,11 @@ angular.module('canteen.forms', [])
     }
 
     function submitTask(taskData, tripId) {
+      console.log(taskData, tripId)
       return $http({
           method: 'POST',
-          url: '/api/tasks/add/' + tripId,
-          data: taskData,
+          url: '/api/task/add/' + tripId,
+          data: taskData
         })
         .then(function(resp) {
           return resp.data;

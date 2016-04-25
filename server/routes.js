@@ -93,7 +93,14 @@ module.exports = function(app) {
         });
       });
     })
-    .put(checkUser, function(req, res) {
+    // .put(checkUser, function(req, res) {
+    //   tripsController.updateTrip(req, function(err, data) {
+    //     sendResponse(res, err, data, 200);
+    //   });
+    // });
+
+  app.route('/api/trip/update')
+    .put(function(req, res) {
       tripsController.updateTrip(req, function(err, data) {
         sendResponse(res, err, data, 200);
       });
@@ -136,7 +143,7 @@ module.exports = function(app) {
       })
     })
 
-    /* Message Routes */
+  /* Message Routes */
   app.route('/api/messages/:tripId')
     .get(checkUser, function(req, res) {
       messagesController.getMessages(req, function(err, data) {
