@@ -1,8 +1,6 @@
 /* User Documents Schema */
 var mongoose = require('mongoose');
 
-// TODO: add local authentication
-// currently using only google for auth
 var userSchema = mongoose.Schema({
   id: String,
   email: String,

@@ -27,7 +27,7 @@ function addedToTripMsg(trip) {
     html: htmlString
   };
   transporter.sendMail(mailOptions, function(err, info) {
-    if(err) {
+    if (err) {
       console.log(err);
       return;
     }

@@ -10,7 +10,7 @@ module.exports = {
       description: task.description,
       category: task.category,
       assignedTo: task.assignedTo.email
-    }
+    };
     Task.create(newTask, function(err) {
       next(err, newTask);
     });
@@ -22,24 +22,24 @@ module.exports = {
     Task.findByIdAndUpdate(newTask._id, newTask)
       .exec(function(err, task) {
         next(err, newTask);
-      })
+      });
   },
 
   getAllTasks: function(req, next) {
     Task.find({ tripId: req.params.tripId })
       .exec(function(err, tasks) {
         next(err, tasks);
-      })
+      });
   },
 
   deleteTask: function(req, next) {
     Task.findByIdAndRemove(req.params.taskId)
       .exec(function(err, task) {
         next(err, task);
-      })
+      });
   }
 
-}
+};
 
 
 

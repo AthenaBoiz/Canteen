@@ -3,8 +3,6 @@ var User = require('./userModel');
 module.exports = {
   createUser: function (body, next) {
     var userData = {
-      // NOTE: this sets a unique 'id' property with google id
-      // (Not '_id' which Mongo sets automatically)
       id: body.id,
       email: body.email,
       given_name: body.given_name,
