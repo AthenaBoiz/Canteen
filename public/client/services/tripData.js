@@ -56,7 +56,6 @@ angular.module('canteen.tripData', [])
         url: '/api/tasks/getAll' + tripId,
       })
       .then(function(res) {
-        //console.log(58, res.data)
         return res.data;
       })
       .catch(function(err) {
@@ -70,7 +69,6 @@ angular.module('canteen.tripData', [])
         url: '/api/email/user' + email
       })
       .then(function(res) {
-        // console.log(res);
         return res;
       })
       .catch(function(err) {
@@ -138,7 +136,6 @@ angular.module('canteen.tripData', [])
       });
     }
 
-    // Factory methods use promises
     return {
       getTrip: getTrip,
       updateStatus: updateStatus,

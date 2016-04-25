@@ -20,7 +20,7 @@ angular.module('canteen.tripMessages', [])
       }
     };
 
-    // set up listener on socket to receive new messages, 
+    // set up listener on socket to receive new messages,
     // if message.tripId === scope.tripId, push it to messages list
     socket.on('message:broadcast', function(msg) {
       if (msg.trip_id === $scope.trip._id) {
@@ -28,11 +28,11 @@ angular.module('canteen.tripMessages', [])
         // convert msg.createdAt to proper time zone, etc.
 
         $scope.messages.push({
-          username : msg.username,
-          message : msg.message,
-          createdAt : msg.createdAt,
-          image_url : msg.image_url,
-          displayTime : timeHelper.convertTime(msg.createdAt)
+          username: msg.username,
+          message: msg.message,
+          createdAt: msg.createdAt,
+          image_url: msg.image_url,
+          displayTime: timeHelper.convertTime(msg.createdAt)
         });
       }
     });

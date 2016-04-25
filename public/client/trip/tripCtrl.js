@@ -64,7 +64,6 @@ angular.module('canteen.trip', ['xeditable'])
           members.push(member.email);
         });
 
-        // console.log($scope.currentUser.email);
         if (members.indexOf($scope.currentUser.email) !== -1) {
           $scope.invitedUser = true;
         }

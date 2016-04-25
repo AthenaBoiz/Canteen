@@ -25,12 +25,11 @@ angular.module('canteen.taskForm', [])
       $scope.taskForm = {
         statusCode: 0
       };
-      // $scope.bullets = [];
 
       trip.getTrip($scope.trip._id)
         .then(function(trip) {
           $scope.$parent.trip = trip;
-        })
+        });
     };
   }
 ]);

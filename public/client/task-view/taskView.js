@@ -6,9 +6,10 @@ angular.module('canteen.taskView', ['xeditable'])
   'socket',
   function($scope, trip, socket) {
     $scope.taskList = {};
+
     trip.getAllTasks($scope.trip._id)
       .then(function(data) {
-        $scope.taskList = data
+        $scope.taskList = data;
       });
 
     $scope.updateTask = function(task) {

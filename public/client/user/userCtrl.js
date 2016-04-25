@@ -72,11 +72,9 @@ angular.module('canteen.user', [])
       } else {
         awsService.getSignedReq(file)
         .then(function (putObj) {
-          // console.log(file);
           awsService.uploadFile(file, putObj, function(url) {
             $scope.user.image_url = url;
             $scope.$apply();
-            console.log($scope.user.image_url);
           });
         });
       }

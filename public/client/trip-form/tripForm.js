@@ -8,7 +8,7 @@ angular.module('canteen.tripForm', [])
   '$state',
   function ($scope, formFactory, $location, authFactory, $state) {
     $scope.tripForm = {};
-    $scope.members =  [];
+    $scope.members = [];
     $scope.tripMember = {};
     $scope.currentUser = null;
     $scope.loggedIn = false;

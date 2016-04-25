@@ -30,7 +30,7 @@ angular.module('canteen.forms', [])
         console.error(err);
       });
     }
-    // Factory methods return promises
+    
     return {
       submitTrip: submitTrip,
       submitTask: submitTask,
