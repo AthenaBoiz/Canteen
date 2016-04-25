@@ -7,11 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="client/style.css">
 
-  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
@@ -43,7 +43,7 @@
 
 <body ng-app="canteen">
   <div ng-include="'../client/navbar/navBar.html'"></div>
-  <div ui-view></div>
+  <main ui-view></main>
   <div ng-include="'../client/footer/footer.html'"></div>
 </body>
 </html>

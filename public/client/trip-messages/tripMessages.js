@@ -31,6 +31,7 @@ angular.module('canteen.tripMessages', [])
           username : msg.username,
           message : msg.message,
           createdAt : msg.createdAt,
+          image_url : msg.image_url,
           displayTime : timeHelper.convertTime(msg.createdAt)
         });
       }

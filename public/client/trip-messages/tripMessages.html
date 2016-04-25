@@ -13,7 +13,10 @@
   <section class="col-sm-7 col-sm-pull-5">
     <div class="panel panel-default" ng-repeat="message in messages | orderBy:'-createdAt'">
       <div class="panel-heading">
-        <h5 class="panel-title">{{ message.username }} <small>{{ message.displayTime }}</small></h5>
+        <h5 class="panel-title message-panel-title">
+          <span class="profile-pic-holder small" style="background-image:url('{{ message.image_url }}')"></span>
+          <span class="message-panel-username">{{ message.username }} <small>{{ message.displayTime }}</small></span>
+        </h5>
       </div>
       <div class="panel-body">
         {{ message.message }}

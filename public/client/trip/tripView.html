@@ -40,7 +40,7 @@
         <div class="col-md-6" ng-controller="taskForm" ng-include="'../client/task-form/taskForm.html'"></div>
 
         <!-- Bottom Table -->
-        <div class="table-responsive col-xs-12" ng-if="trip.tasks.length" ng-controller="taskView" ng-include="'../client/task-view/taskView.html'"></div>
+        <div class="table-responsive col-xs-12" ng-if="trip._id" ng-controller="taskView" ng-include="'../client/task-view/taskView.html'"></div>
 
         <!-- Messages -->
         <div ng-controller="tripMessages" ng-include="'../client/trip-messages/tripMessages.html'"></div>
