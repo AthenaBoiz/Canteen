@@ -28,6 +28,17 @@
               <svg height="10" width="10">
                 <circle cx="5" cy="5" r="5" fill="{{ color[person.email] = color.colors[$index] }}" />
               </svg>
+
+            </span>
+            <span ng-show>
+            <ul ng-repeat="person in trip.members">
+              <li>{{ person.email }} <button class="btn btn-danger btn-delete-trip" ng-click="deleteMember(person.email)">Uninvite</button></li>
+            </ul>
+              <input type="form" input="text"/><button class="btn" ng-click="addMember(person.email)">Invite</button> 
+             
+
+
+
             </span>
             <span ng-show="notUser" class="ng-hide">Not a User!</span>
           </p>
